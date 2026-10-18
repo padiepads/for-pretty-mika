@@ -1,4 +1,4 @@
-/* Cute Love Letter: envelope, letter reveal, music, small extras */
+/* Cute Love Letter: envelope, letter reveal, music, meow cat, small extras */
 (function () {
   'use strict';
 
@@ -11,27 +11,31 @@
   const audio          = document.getElementById('bgMusic');
   const musicBtn       = document.getElementById('musicToggle');
   const floaters       = document.getElementById('floaters');
+  const meowCat        = document.getElementById('meowCat');
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const TARGET_VOLUME = 0.3;   // comfortable 30%
-  const OPEN_DELAY    = reducedMotion ? 50 : 1500; // wait for the letter to slide out
+  const TARGET_VOLUME = 0.3;                        // comfortable 30%
+  const OPEN_DELAY    = reducedMotion ? 50 : 1500;  // wait for the letter to slide out
   let isOpen = false;
-  let busy = false;            // prevents double-clicks during animations
+  let busy = false;           // prevents double-clicks during animations
   let fadeTimer = null;
   let musicMissing = false;
+  let userPaused = false;     // true only if the visitor pressed pause on purpose
 
   /* =========================================================
      MUSIC
      ========================================================= */
   audio.volume = 0;
 
-  // If the file is missing or can't load, mark it and carry on quietly.
-  audio.addEventListener('error', () => {
+  function markMusicMissing() {
     musicMissing = true;
     musicBtn.classList.add('is-missing');
-    musicBtn.title = 'Music file not found (assets/bg-music.mp3)';
+    musicBtn.title = 'Music file not found (assets/i like you.m4a)';
     setMusicUI(false);
-  });
+  }
+
+  // If the file is missing or can't load, mark it and carry on quietly.
+  audio.addEventListener('error', markMusicMissing);
 
   function setMusicUI(playing) {
     musicBtn.classList.toggle('is-playing', playing);
@@ -59,17 +63,28 @@
     const p = audio.play();
     if (p && typeof p.then === 'function') {
       p.then(() => { setMusicUI(true); fadeTo(TARGET_VOLUME, 2000); })
-       .catch(() => setMusicUI(false)); // browser blocked playback: user can press the button
+       .catch(() => {
+         // Either the file failed to load, or the browser blocked playback.
+         if (audio.error) markMusicMissing(); else setMusicUI(false);
+       });
     }
   }
 
   function pauseMusic() {
-    fadeTo(0, 400, () => audio.pause());
     setMusicUI(false);
+    fadeTo(0, 400, () => audio.pause());
   }
 
+  // Music button: pause or resume, and remember what the visitor chose.
   musicBtn.addEventListener('click', () => {
-    if (audio.paused) playMusic(); else pauseMusic();
+    if (musicMissing) return;
+    if (musicBtn.classList.contains('is-playing')) {
+      userPaused = true;
+      pauseMusic();
+    } else {
+      userPaused = false;
+      playMusic();
+    }
   });
 
   /* =========================================================
@@ -78,11 +93,12 @@
   function openLetter() {
     if (busy || isOpen) return;
     busy = true;
-    envelope.classList.add('is-open');           // flap opens, letter slides out
+    envelope.classList.add('is-open');   // flap opens, letter slides out
     musicBtn.hidden = false;
-    // Start music only now (inside the click, so browsers allow it),
-    // and only if the visitor hasn't paused it themselves before.
-    if (!audio.dataset.userPaused) playMusic();
+
+    // Music starts only now (inside the click, so browsers allow it),
+    // and not if the visitor already paused it earlier.
+    if (!userPaused) playMusic();
 
     setTimeout(() => {
       envelopeScreen.classList.add('is-leaving');
@@ -123,15 +139,21 @@
   envelope.addEventListener('click', openLetter);
   closeBtn.addEventListener('click', closeLetter);
 
-  // Remember if the visitor paused on purpose, so reopening doesn't force music back on.
-  musicBtn.addEventListener('click', () => {
-    if (audio.paused) delete audio.dataset.userPaused;
-    else audio.dataset.userPaused = '1';
-  });
-  // (the click handler above runs after the toggle handler, so the check is reversed on purpose)
-  musicBtn.addEventListener('click', () => {
-    if (audio.paused && !musicMissing) audio.dataset.userPaused = '1';
-    else delete audio.dataset.userPaused;
+  /* =========================================================
+     MEOW CAT: wobble + speech bubble on click/tap
+     ========================================================= */
+  let meowTimer = null;
+
+  meowCat.addEventListener('click', () => {
+    // Remove and re-add the class so the wobble can replay on every click
+    meowCat.classList.remove('is-wobbling');
+    void meowCat.offsetWidth;              // forces the browser to restart the animation
+    meowCat.classList.add('is-wobbling', 'is-meowing');
+
+    clearTimeout(meowTimer);
+    meowTimer = setTimeout(() => {
+      meowCat.classList.remove('is-wobbling', 'is-meowing');
+    }, 1200);
   });
 
   /* =========================================================
@@ -172,4 +194,4 @@
       setTimeout(() => paw.remove(), 1000);
     });
   }
-})();
+})(); 
