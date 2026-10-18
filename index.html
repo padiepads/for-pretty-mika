@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Hi Mika!! ♡</title>
+  <meta name="theme-color" content="#ffd6e3">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="cat-face" viewBox="0 0 120 100">
+      <path d="M14 46 L18 6 L48 24 Z" fill="#fff" stroke="#f4a3bd" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M106 46 L102 6 L72 24 Z" fill="#fff" stroke="#f4a3bd" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M22 36 L23 18 L38 27 Z" fill="#ffc2d6"/>
+      <path d="M98 36 L97 18 L82 27 Z" fill="#ffc2d6"/>
+      <ellipse cx="60" cy="58" rx="48" ry="38" fill="#fff" stroke="#f4a3bd" stroke-width="3"/>
+      <ellipse cx="42" cy="56" rx="5" ry="6.5" fill="#5a3a4a"/>
+      <ellipse cx="78" cy="56" rx="5" ry="6.5" fill="#5a3a4a"/>
+      <circle cx="44" cy="53" r="1.8" fill="#fff"/>
+      <circle cx="80" cy="53" r="1.8" fill="#fff"/>
+      <ellipse cx="28" cy="70" rx="8" ry="5" fill="#ffc2d6" opacity=".7"/>
+      <ellipse cx="92" cy="70" rx="8" ry="5" fill="#ffc2d6" opacity=".7"/>
+      <path d="M56 66 L64 66 L60 71 Z" fill="#f78fb3"/>
+      <path d="M60 71 Q55 77 50 73 M60 71 Q65 77 70 73" fill="none" stroke="#5a3a4a" stroke-width="2" stroke-linecap="round"/>
+      <path d="M8 60 L26 64 M8 72 L26 70 M112 60 L94 64 M112 72 L94 70" stroke="#f4a3bd" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+
+  <div class="floaters" id="floaters" aria-hidden="true"></div>
+
+  <button class="music-toggle" id="musicToggle" type="button" aria-pressed="false" aria-label="Play music" hidden>
+    <span class="music-icon" aria-hidden="true">♪</span>
+    <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+  </button>
+
+  <audio id="bgMusic" src="assets/i%20like%20you.m4a" loop preload="auto"></audio>
+
+  <main class="screen envelope-screen" id="envelopeScreen">
+    <p class="intro-title">HAII PRETTY! I MADE SOMETHING FOR YOU:3 ♡</p>
+    <p class="intro-sub">hmm hulaan mo...</p>
+
+    <div class="envelope-stage">
+      <svg class="peeking-cat" viewBox="0 0 120 100" aria-hidden="true"><use href="#cat-face"/></svg>
+
+      <button class="envelope" id="envelope" type="button" aria-label="Open the envelope">
+        <span class="env-back"></span>
+        <span class="env-letter"></span>
+        <span class="env-front env-left"></span>
+        <span class="env-front env-right"></span>
+        <span class="env-front env-bottom"></span>
+        <span class="env-flap"></span>
+        <span class="env-seal" aria-hidden="true">♥</span>
+      </button>
+    </div>
+
+    <p class="hint" id="envelopeHint">Tap the envelope to open 🐾</p>
+  </main>
+
+  <section class="screen letter-screen" id="letterScreen" hidden aria-label="Your letter">
+    <article class="letter-card">
+      <span class="deco deco-tl" aria-hidden="true">🐾</span>
+      <span class="deco deco-tr" aria-hidden="true">✿</span>
+      <span class="deco deco-bl" aria-hidden="true">♡</span>
+      <span class="deco deco-br" aria-hidden="true">🐾</span>
+
+      <header class="letter-header">
+        <h1>A Letter for You ♡</h1>
+        <div class="divider" aria-hidden="true">🐾 ✦ 🐾</div>
+      </header>
+
+
+      <p class="letter-recipient" id="recipientName">Dear Mika,</p>
+
+      <div class="letter-body" id="letterBody">
+        <!-- LETTER START: each <p> is one paragraph. Copy/paste more <p> lines as needed. -->
+        <p>Hi pretty! I know that I've said it before, but I still want you to know that I really do like you.</p>
+        <p>At first, I thought it's just a crush or an infatuation. But I guess we don't really know. I admired you since the first time I saw you at the gymnasium, your bangs and your glasses that took my attention and it really suits you (the bini of the CvSU Bacoor😝).</p>
+        <p>I just like how you talk with people, yes you're a bit shy yet it feels so nice talking with you. I like how you smile then nod, tapos nag s-shrink pa eyes mo HAHAHA.</p>
+        <p>I just want you to know that i liked you not because my friend pushed me to talk with you, I'm just thankful that they did cause I won't be able to have this conversation with you otherwise.</p>
+        <!-- LETTER END -->
+      </div>
+
+      <p class="letter-closing" id="letterClosing">And I'm sure that I want to go more and know you more, making me have this feelings towards you. Mika, I don't want to rush anything between us, there's something about you that makes me want to know you a little more every day. Not just the things you show everyone, but also the little things that make you who you are. And if you'll let me, I'd love to be someone who gets to discover those things, slowly and sincerely.♡</p>
+      <p class="letter-signature" id="letterSignature">yours truly, omsimnidah</p>
+
+      <svg class="bottom-cat" viewBox="0 0 120 100" aria-hidden="true"><use href="#cat-face"/></svg>
+
+      <div class="letter-actions">
+        <button class="btn" id="closeLetter" type="button">Close the letter 💌</button>
+      </div>
+    </article>
+
+    <footer class="site-footer">haii pretty!! ♡</footer>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
