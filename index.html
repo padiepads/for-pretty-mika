@@ -72,37 +72,94 @@
 
   <!-- ========== SCREEN 2: LETTER ========== -->
   <section class="screen letter-screen" id="letterScreen" hidden aria-label="Your letter">
-    <article class="letter-card">
-      <span class="deco deco-tl" aria-hidden="true">🐾</span>
-      <span class="deco deco-tr" aria-hidden="true">✿</span>
-      <span class="deco deco-bl" aria-hidden="true">♡</span>
-      <span class="deco deco-br" aria-hidden="true">🐾</span>
 
-      <header class="letter-header">
-        <h1>A Letter for You ♡</h1>
-        <div class="divider" aria-hidden="true">🐾 ✦ 🐾</div>
-      </header>
+    <!-- NEW: layout wrapper (letter + bouquet) -->
+    <div class="letter-layout">
 
-      <p class="letter-recipient" id="recipientName">Dear Mika,</p>
+      <article class="letter-card">
+        <span class="deco deco-tl" aria-hidden="true">🐾</span>
+        <span class="deco deco-tr" aria-hidden="true">✿</span>
+        <span class="deco deco-bl" aria-hidden="true">♡</span>
+        <span class="deco deco-br" aria-hidden="true">🐾</span>
 
-      <div class="letter-body" id="letterBody">
-        <!-- LETTER START: each <p> is one paragraph. Copy/paste more <p> lines as needed. -->
-        <p>Hi pretty! I know that I've said it before, but I still want you to know that I really do like you.</p>
-        <p>At first, I thought it's just a crush or an infatuation. But I guess we don't really know. I admired you since the first time I saw you at the gymnasium, your bangs and your glasses that took my attention and it really suits you (the bini of the CvSU Bacoor😝).</p>
-        <p>I just like how you talk with people, yes you're a bit shy yet it feels so nice talking with you. I like how you smile then nod, tapos nag s-shrink pa eyes mo HAHAHA.</p>
-        <p>I just want you to know that i liked you not because my friend pushed me to talk with you, I'm just thankful that they did cause I won't be able to have this conversation with you otherwise.</p>
-        <!-- LETTER END -->
-      </div>
+        <header class="letter-header">
+          <h1>A Letter for You ♡</h1>
+          <div class="divider" aria-hidden="true">🐾 ✦ 🐾</div>
+        </header>
 
-      <p class="letter-closing" id="letterClosing">And I'm sure that I want to go more and know you more, making me have this feelings towards you. Mika, I don't want to rush anything between us, there's something about you that makes me want to know you a little more every day. Not just the things you show everyone, but also the little things that make you who you are. And if you'll let me, I'd love to be someone who gets to discover those things, slowly and sincerely.♡</p>
-      <p class="letter-signature" id="letterSignature">yours truly, omsimnidah</p>
+        <p class="letter-recipient" id="recipientName">Dear Mika,</p>
 
-      <svg class="bottom-cat" viewBox="0 0 120 100" aria-hidden="true"><use href="#cat-face"/></svg>
+        <div class="letter-body" id="letterBody">
+          <!-- LETTER START: each <p> is one paragraph. Copy/paste more <p> lines as needed. -->
+          <p>Hi pretty! I know that I've said it before, but I still want you to know that I really do like you.</p>
+          <p>At first, I thought it's just a crush or an infatuation. But I guess we don't really know. I admired you since the first time I saw you at the gymnasium, your bangs and your glasses that took my attention and it really suits you (the bini of the CvSU Bacoor😝).</p>
+          <p>I just like how you talk with people, yes you're a bit shy yet it feels so nice talking with you. I like how you smile then nod, tapos nag s-shrink pa eyes mo HAHAHA.</p>
+          <p>I just want you to know that i liked you not because my friend pushed me to talk with you, I'm just thankful that they did cause I won't be able to have this conversation with you otherwise.</p>
+          <!-- LETTER END -->
+        </div>
 
-      <div class="letter-actions">
-        <button class="btn" id="closeLetter" type="button">Close the letter 💌</button>
-      </div>
-    </article>
+        <p class="letter-closing" id="letterClosing">And I'm sure that I want to go more and know you more, making me have this feelings towards you. Mika, I don't want to rush anything between us, there's something about you that makes me want to know you a little more every day. Not just the things you show everyone, but also the little things that make you who you are. And if you'll let me, I'd love to be someone who gets to discover those things, slowly and sincerely.♡</p>
+        <p class="letter-signature" id="letterSignature">yours truly, omsimnidah</p>
+
+        <svg class="bottom-cat" viewBox="0 0 120 100" aria-hidden="true"><use href="#cat-face"/></svg>
+
+        <div class="letter-actions">
+          <button class="btn" id="closeLetter" type="button">Close the letter 💌</button>
+        </div>
+      </article>
+
+      <!-- NEW: flower bouquet -->
+      <aside class="bouquet" aria-hidden="true">
+        <svg viewBox="0 0 240 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <symbol id="bloom" viewBox="0 0 60 60">
+              <g fill="currentColor" stroke="#e8a1b9" stroke-width="1.5">
+                <ellipse cx="30" cy="15" rx="9" ry="13"/>
+                <ellipse cx="30" cy="15" rx="9" ry="13" transform="rotate(72 30 30)"/>
+                <ellipse cx="30" cy="15" rx="9" ry="13" transform="rotate(144 30 30)"/>
+                <ellipse cx="30" cy="15" rx="9" ry="13" transform="rotate(216 30 30)"/>
+                <ellipse cx="30" cy="15" rx="9" ry="13" transform="rotate(288 30 30)"/>
+              </g>
+              <circle cx="30" cy="30" r="6" fill="#ffe08a"/>
+              <circle cx="28" cy="28" r="1.6" fill="#fff" opacity=".8"/>
+            </symbol>
+          </defs>
+
+          <g class="bq-sway">
+            <!-- leaves -->
+            <path d="M120 175 C68 160 36 118 52 84 C90 96 116 132 120 175Z" fill="#8fd0a0"/>
+            <path d="M120 175 C172 160 204 118 188 84 C150 96 124 132 120 175Z" fill="#7cc592"/>
+            <path d="M120 170 C100 130 104 96 120 80 C136 96 140 130 120 170Z" fill="#9ad9aa"/>
+            <!-- stems -->
+            <path d="M120 215 L75 103 M120 215 L121 69 M120 215 L166 104 M120 215 L118 123"
+                  stroke="#6fb584" stroke-width="4" stroke-linecap="round" fill="none"/>
+            <!-- blooms -->
+            <use href="#bloom" x="50"  y="78" width="50" height="50" style="color:#ffc2d6"/>
+            <use href="#bloom" x="140" y="79" width="52" height="52" style="color:#f9a8c4"/>
+            <use href="#bloom" x="92"  y="40" width="58" height="58" style="color:#fff"/>
+            <use href="#bloom" x="95"  y="100" width="46" height="46" style="color:#fff"/>
+            <!-- wrapping paper -->
+            <path d="M62 150 L178 150 L132 262 Q120 270 108 262 Z" fill="#ffc9db" stroke="#f4a3bd" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M62 150 L120 196 L178 150 Z" fill="#fff" stroke="#f4a3bd" stroke-width="3" stroke-linejoin="round"/>
+            <!-- ribbon -->
+            <path d="M120 208 C92 184 82 214 100 222 C109 226 117 217 120 208Z" fill="#e8688f"/>
+            <path d="M120 208 C148 184 158 214 140 222 C131 226 123 217 120 208Z" fill="#e8688f"/>
+            <path d="M117 212 L104 246 L115 240 L121 216Z" fill="#f07da0"/>
+            <path d="M123 212 L136 246 L125 240 L119 216Z" fill="#f07da0"/>
+            <circle cx="120" cy="209" r="7" fill="#d9507b"/>
+          </g>
+
+          <!-- sparkles & hearts -->
+          <text class="twinkle" x="28"  y="52"  font-size="18" fill="#f9a8c4">✦</text>
+          <text class="twinkle t2" x="196" y="58"  font-size="20" fill="#e8688f">♡</text>
+          <text class="twinkle t3" x="204" y="190" font-size="16" fill="#f9a8c4">✧</text>
+          <text class="twinkle t2" x="22"  y="170" font-size="16" fill="#e8688f">♥</text>
+        </svg>
+        <p class="bouquet-caption">for you, Mika ♡</p>
+      </aside>
+
+    </div>
+    <!-- END NEW -->
 
     <footer class="site-footer">haii pretty!! ♡</footer>
   </section>
