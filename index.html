@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Hi Mika!! ♡</title>
@@ -74,7 +73,7 @@
   <!-- ========== SCREEN 2: LETTER ========== -->
   <section class="screen letter-screen" id="letterScreen" hidden aria-label="Your letter">
 
-    <!-- NEW: layout wrapper (letter + bouquet) -->
+    <!-- Layout wrapper (letter + bouquet) -->
     <div class="letter-layout">
 
       <article class="letter-card">
@@ -99,6 +98,29 @@
           <!-- LETTER END -->
         </div>
 
+        <!-- NEW: photo section (us1.jpg + us2.jpg) -->
+        <div class="letter-photos">
+          <div class="photo-row">
+            <figure class="photo photo-1">
+              <button class="photo-btn" type="button" aria-label="View this photo larger">
+                <img src="assets/us1.jpg"
+                     alt="A blurry, playful selfie of Mika and me, leaning in close together"
+                     onerror="this.closest('figure').hidden = true">
+              </button>
+              <figcaption>Our first normal selfie lmao🐾</figcaption>
+            </figure>
+            <figure class="photo photo-2">
+              <button class="photo-btn" type="button" aria-label="View this photo larger">
+                <img src="assets/us2.jpg"
+                     alt="Mika, with her bangs and glasses, smiling with her hand by her cheek, next to me sticking out my tongue and flashing a peace sign"
+                     onerror="this.closest('figure').hidden = true">
+              </button>
+              <figcaption>oops, blurry but cute ♡</figcaption>
+            </figure>
+          </div>
+        </div>
+        <!-- END NEW photo section -->
+
         <p class="letter-closing" id="letterClosing">And I'm sure that I want to go more and know you more, making me have this feelings towards you. Mika, I don't want to rush anything between us, there's something about you that makes me want to know you a little more every day. Not just the things you show everyone, but also the little things that make you who you are. And if you'll let me, I'd love to be someone who gets to discover those things, slowly and sincerely.♡</p>
         <p class="letter-signature" id="letterSignature">yours truly, omsimnidah</p>
 
@@ -109,7 +131,7 @@
         </div>
       </article>
 
-      <!-- NEW: flower bouquet -->
+      <!-- Flower bouquet -->
       <aside class="bouquet" aria-hidden="true">
         <svg viewBox="0 0 240 300" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -160,10 +182,15 @@
       </aside>
 
     </div>
-    <!-- END NEW -->
 
     <footer class="site-footer">haii pretty!! ♡</footer>
   </section>
+
+  <!-- NEW: full-size photo viewer -->
+  <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close photo">✕</button>
+    <img id="lightboxImg" src="" alt="">
+  </div>
 
   <script src="script.js"></script>
 </body>

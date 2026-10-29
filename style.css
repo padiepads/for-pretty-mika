@@ -14,7 +14,6 @@
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; min-height: 100%; }
 body {
@@ -217,9 +216,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 @keyframes pawFade { to { opacity: 0; transform: translate(-50%, -90%) scale(.6); } }
 
-
 /* =========================================================
-   NEW: Letter + bouquet layout
+   Letter + bouquet layout
    ========================================================= */
 .letter-layout {
   display: flex; flex-direction: column; align-items: center; gap: 1.6rem;
@@ -227,7 +225,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .letter-layout .letter-card { margin: 0; width: 100%; min-width: 0; }
 
-/* ---------- NEW: Bouquet ---------- */
+/* ---------- Bouquet ---------- */
 .bouquet {
   width: clamp(170px, 52vw, 240px); text-align: center;
   opacity: 0; transform: translateY(40px) scale(.85);
@@ -256,6 +254,76 @@ button { font: inherit; color: inherit; cursor: pointer; }
     flex: 0 0 240px; width: 240px;
     position: sticky; top: calc(2rem + var(--safe-top));  /* stays in view while reading */
   }
+}
+
+/* =========================================================
+   NEW: Photos inside the letter (us1.jpg + us2.jpg)
+   Stacked full-width so they're big, natural shape, no cropping.
+   ========================================================= */
+.letter-photos {
+  margin: 1.6rem 0 .6rem;
+  opacity: 0; transform: translateY(14px);
+  transition: opacity .9s ease .5s, transform .9s ease .5s;
+}
+.letter-screen.is-visible .letter-photos { opacity: 1; transform: none; }
+
+.photo-row {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 1.6rem;
+}
+
+.photo {
+  position: relative; margin: 0; width: 100%; min-width: 0;
+  padding: .55rem .55rem .4rem;
+  background: #fff; border: 2px solid var(--pink-300); border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(232, 104, 143, .25);
+}
+.photo-1 { width: min(100%, 360px); transform: rotate(-1.5deg); }   /* portrait photo */
+.photo-2 { transform: rotate(1.5deg); }                              /* landscape photo */
+
+/* tiny washi-tape accent on top of each photo */
+.photo::before {
+  content: ""; position: absolute; top: -9px; left: 50%;
+  width: 46px; height: 16px; transform: translateX(-50%) rotate(-4deg);
+  background: rgba(249, 168, 196, .65); border-radius: 3px; z-index: 1;
+}
+.photo-2::before { transform: translateX(-50%) rotate(4deg); }
+
+.photo-btn {
+  display: block; width: 100%; padding: 0; border: 0; background: none;
+  border-radius: 10px; cursor: zoom-in;
+  -webkit-tap-highlight-color: transparent;
+}
+.photo-btn img {
+  display: block; width: 100%; height: auto;   /* natural shape, nothing cropped */
+  border-radius: 10px;
+}
+
+.photo figcaption {
+  margin-top: .35rem; text-align: center;
+  font-family: var(--hand); font-size: clamp(.85rem, 3vw, 1rem);
+  line-height: 1.4; color: var(--pink-500);
+}
+
+/* ---------- Full-size photo viewer ---------- */
+.lightbox {
+  position: fixed; inset: 0; z-index: 50;
+  display: grid; place-items: center;
+  padding: calc(3.5rem + var(--safe-top)) 1rem calc(1rem + var(--safe-bottom));
+  background: rgba(90, 58, 74, .88);
+  cursor: zoom-out;
+}
+.lightbox img {
+  display: block; max-width: 100%; max-height: 100%;
+  object-fit: contain;                         /* shows the WHOLE picture */
+  border: 4px solid #fff; border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, .35);
+}
+.lightbox-close {
+  position: absolute; top: calc(.8rem + var(--safe-top)); right: .8rem;
+  width: 46px; height: 46px; display: grid; place-items: center;
+  background: #fff; border: 2px solid var(--pink-300); border-radius: 50%;
+  box-shadow: var(--shadow); font-size: 1.2rem; color: var(--pink-500);
 }
 /* ===================== END NEW ===================== */
 

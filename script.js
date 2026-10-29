@@ -194,4 +194,39 @@
       setTimeout(() => paw.remove(), 1000);
     });
   }
-})(); 
+
+  /* =========================================================
+     PHOTO VIEWER: tap a photo to see the whole picture
+     ========================================================= */
+  const lightbox      = document.getElementById('lightbox');
+  const lightboxImg   = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+  let lastPhotoBtn = null;
+
+  function openLightbox(btn) {
+    const img = btn.querySelector('img');
+    if (!img) return;
+    lastPhotoBtn = btn;
+    lightboxImg.src = img.currentSrc || img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+    lightboxClose.focus({ preventScroll: true });
+  }
+
+  function closeLightbox() {
+    if (lightbox.hidden) return;
+    lightbox.hidden = true;
+    lightboxImg.src = '';
+    document.body.style.overflow = '';
+    if (lastPhotoBtn) lastPhotoBtn.focus({ preventScroll: true });
+  }
+
+  document.querySelectorAll('.photo-btn').forEach((btn) => {
+    btn.addEventListener('click', () => openLightbox(btn));
+  });
+  lightbox.addEventListener('click', closeLightbox);   // tap anywhere to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
+})();
